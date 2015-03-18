@@ -5,7 +5,7 @@ var should = require('should')
 
 describe('commonRoutes', function() {
 
-  describe('#createCrudRoutes', function() {
+  describe('#createRoutes', function() {
     it('should build crud routes if supporting functions exist', function () {
       // ARRANGE
       var obj = {};
@@ -24,16 +24,14 @@ describe('commonRoutes', function() {
       };
 
       // ACT
-      var crudRoutes = new commonRoutes.createCrudRoutes(obj);
+      var crudRoutes = new commonRoutes.createRoutes(obj, { crud: true });
 
       // ASSERT
       crudRoutes.should.be.ok;
       crudRoutes.should.be.an.array;
       crudRoutes.should.have.length(6);
     });
-  });
 
-  describe('#createParentChildRoutes', function() {
     it('should build parent child routes if supporting functions exist', function() {
       // ARRANGE
       var obj = {};
@@ -42,13 +40,14 @@ describe('commonRoutes', function() {
       obj.getChildren = function() {};
 
       // ACT
-      var pcRoutes = new commonRoutes.createParentChildRoutes(obj);
+      var pcRoutes = new commonRoutes.createRoutes(obj, { parentChild: true });
 
       // ASSERT
       pcRoutes.should.be.ok;
       pcRoutes.should.be.an.array;
       pcRoutes.should.have.length(2);
     });
+
   });
 
 });
